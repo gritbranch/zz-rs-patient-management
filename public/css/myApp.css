@@ -1,0 +1,16 @@
+body {
+  padding-top: 50px;
+}
+
+p, .list-group > a {
+    text-align: justify;
+}
+
+.my-app {
+  padding: 40px 0px;
+  text-align: center;
+}
+
+#addRecord {
+    text-align: right;
+}

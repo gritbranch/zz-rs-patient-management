@@ -1,0 +1,15 @@
+db.personnel.insert({firstName: "Ryan", 
+middleName: "Palacios", 
+lastName: "Salvador", 
+birthdate: "09/08/1983", 
+gender: "Male", 
+maritalStatus: "Married", 
+occupation: "Software Engineer", 
+contactNumber: "09175138559"
+})
+
+./curl --data "firstName=Ryan&lastName=Salvador" http://localhost:3000/add
+./curl "http://localhost:3000/list"
+
+
+./curl "http://localhost:3000/view/55ec80028338f414204197b2"
