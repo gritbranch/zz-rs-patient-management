@@ -6,13 +6,20 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     .state('home', {
       url: '/home',
       templateUrl: '/home.html',
-      controller: 'MainCtrl',
+      controller: 'MainCtrl'
+    });
+    
+  $stateProvider
+    .state('list', {
+      url: '/list/{filter}',
+      templateUrl: '/list.html',
+      controller: 'ListCtrl',
       resolve: {
         postPromise: ['personnelFactory', function(personnelFactory){
             return personnelFactory.getAll();
         }]
         }
-    });
+    });    
 
   $stateProvider
     .state('about', {
@@ -33,18 +40,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/view/{id}',
       templateUrl: '/view.html',
       controller: 'ViewCtrl',
-              resolve: {
+      resolve: {
             person: ['$stateParams', 'personnelFactory', function($stateParams, personnelFactory) {
                 return personnelFactory.get($stateParams.id);
             }]
-              }
-    });
-    
-  $stateProvider
-    .state('edit', {
-      url: '/edit',
-      templateUrl: '/edit.html',
-      controller: 'EditCtrl'
+      }
     });
     
   $urlRouterProvider.otherwise('home');
@@ -63,20 +63,28 @@ app.factory('personnelFactory', ['$http', function($http){
         });
     };
     
+    o.get = function(id) {
+      return $http.get('/view/' + id).then(function(res){
+        return res.data;
+      });
+    };
+    
     o.create = function(person) {
+        console.log('from create ' + person.firstName);
         return $http.post('/add', person).success(function(data){
             o.personnelFactory.push(data);
         });
     };
     
-    o.get = function(id) {
-  return $http.get('/view/' + id).then(function(res){
-    return res.data;
-  });
-};
+    o.update = function(person) {
+      console.log('from update ' + person.firstName);
+        return $http.put('/view/' + person._id + '/update', person)
+    .success(function(data){
+      person.firstName = "Updated!!!";
+    });
+    };
     
     /*
-    
     o.create = function(post) {
         return $http.post('/add', post).success(function(data){
             o.posts.push(data);
@@ -114,6 +122,12 @@ app.controller('MainCtrl', ['$scope', 'personnelFactory', function($scope, perso
     
 }]);
 
+app.controller('ListCtrl', ['$scope', 'personnelFactory', function($scope, personnelFactory){
+   
+  $scope.personnel = personnelFactory.personnelFactory;
+    
+}]);
+
 app.controller('AboutCtrl', ['$scope', function($scope){
   $scope.pageHeader = 'Project Small Potato About Page';
 }]);
@@ -125,35 +139,38 @@ app.controller('CreateCtrl', ['$scope', 'personnelFactory', function($scope, per
     
     
     $scope.addPatient = function(){
-  
-    personnelFactory.create({
-        firstName: $scope.firstName, 
-        middleName: $scope.middleName, 
-        lastName: $scope.lastName, 
-        birthdate: $scope.birthdate, 
-        gender: $scope.gender, 
-        maritalStatus: $scope.maritalStatus, 
-        occupation: $scope.occupation, 
-        contactNumber: $scope.contactNumber
-    });        
+      personnelFactory.create({
+          firstName: $scope.firstName, 
+          middleName: $scope.middleName, 
+          lastName: $scope.lastName, 
+          birthdate: $scope.birthdate, 
+          gender: $scope.gender, 
+          maritalStatus: $scope.maritalStatus, 
+          occupation: $scope.occupation, 
+          contactNumber: $scope.contactNumber
+      });        
         
-        $scope.firstName = "";
-        $scope.middleName = "";
-        $scope.lastName = "";
-        $scope.birthdate = "";
-        $scope.gender = "";
-        $scope.maritalStatus = "";
-        $scope.occupation = "";
-        $scope.contactNumber = "";
-};
+      $scope.firstName = "";
+      $scope.middleName = "";
+      $scope.lastName = "";
+      $scope.birthdate = "";
+      $scope.gender = "";
+      $scope.maritalStatus = "";
+      $scope.occupation = "";
+      $scope.contactNumber = "";
+      
+    };
 }]);
 
-app.controller('ViewCtrl', ['$scope', 'person', function($scope, person) {
-    $scope.pageHeader = 'View Page';
+app.controller('ViewCtrl', ['$scope', 'personnelFactory', 'person', function($scope, personnelFactory, person) {
+    $scope.pageHeader = 'View Patient Details';
     
-    $scope.personnel = person;
-}]);
-
-app.controller('EditCtrl', ['$scope', function($scope){
-  $scope.pageHeader = 'Edit Page';
+    $scope.personnelFactory = personnelFactory;
+    
+    $scope.person = person;
+    
+    $scope.updatePerson = function(person){ 
+      personnelFactory.update(person);        
+    };
+      
 }]);

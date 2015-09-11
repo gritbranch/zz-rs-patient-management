@@ -11,4 +11,9 @@ var PersonnelSchema = new mongoose.Schema({
         contactNumber: String
         });
 
+PersonnelSchema.methods.update = function (cb) {
+        this.firstName = 'Ryan';
+        this.save(cb);
+}
+
 mongoose.model('Personnel', PersonnelSchema);
