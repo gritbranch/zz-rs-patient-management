@@ -122,6 +122,8 @@
         <div class="col-md-12">
         <div class="btn-toolbar">
                 <div class="btn-group btn-group-sm">
+                <!-- TO DO: #/list/filter=all; and access as req.param in node -->
+                <!-- https://scotch.io/tutorials/use-expressjs-to-get-url-and-post-parameters -->
                 <a href="#/list/all" class="btn btn-default" role="button">All</a>
                 <a href="#/list/a" class="btn btn-default" role="button">A</a>
                 <a href="#/list/b" class="btn btn-default" role="button">B</a>
@@ -207,21 +209,20 @@
         </div>
         <div class="col-md-4">
         <h1>{{pageHeader}}</h1>
-        <form ng-submit="updatePerson(person)"> 
-                <input type="text" class="form-control" placeholder={{person.firstName}} ng-model="person.firstName">
-                <input type="text" class="form-control" placeholder={{person.middleName}} ng-model="person.middleName">
-                <input type="text" class="form-control" placeholder={{person.lastName}} ng-model="person.lastName">
-                <input type="text" class="form-control" placeholder={{person.birthdate}} ng-model="person.birthdate">
-                <input type="text" class="form-control" placeholder={{person.gender}} ng-model="person.gender">
-                <input type="text" class="form-control" placeholder={{person.maritalStatus}} ng-model="person.maritalStatus">
-                <input type="text" class="form-control" placeholder={{person.occupation}} ng-model="person.occupation">
-                <input type="text" class="form-control" placeholder={{person.contactNumber}} ng-model="person.contactNumber">
+        <input type="text" class="form-control" placeholder={{person.firstName}} ng-model="person.firstName">
+        <input type="text" class="form-control" placeholder={{person.middleName}} ng-model="person.middleName">
+        <input type="text" class="form-control" placeholder={{person.lastName}} ng-model="person.lastName">
+        <input type="text" class="form-control" placeholder={{person.birthdate}} ng-model="person.birthdate">
+        <input type="text" class="form-control" placeholder={{person.gender}} ng-model="person.gender">
+        <input type="text" class="form-control" placeholder={{person.maritalStatus}} ng-model="person.maritalStatus">
+        <input type="text" class="form-control" placeholder={{person.occupation}} ng-model="person.occupation">
+        <input type="text" class="form-control" placeholder={{person.contactNumber}} ng-model="person.contactNumber">
 
-                <br>
-                <a href="#/home" class="btn btn-sm btn-primary" role="button">Return</a>
-                <button type="submit" class="btn btn-sm btn-warning">Update</button>
-                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
-        </form>
+        <br>
+        <a href="#/home" class="btn btn-sm btn-primary" role="button">Return</a>
+        <button ng-click="updatePerson(person)" type="button" class="btn btn-sm btn-warning">Update</button>
+        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
@@ -236,7 +237,8 @@
                 </div>
                 <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Yes, delete the record</button>
+                        <button ng-click="deletePerson(person)" type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Yes, delete the record</button>
+                </form>
                 </div>
                 </div>
                 </div>

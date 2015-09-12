@@ -70,17 +70,28 @@ app.factory('personnelFactory', ['$http', function($http){
     };
     
     o.create = function(person) {
-        console.log('from create ' + person.firstName);
+    //    console.log('from create ' + person.firstName);
         return $http.post('/add', person).success(function(data){
-            o.personnelFactory.push(data);
+    //        o.personnelFactory.push(data);
+              console.log("Record Added.");
         });
     };
     
     o.update = function(person) {
-      console.log('from update ' + person.firstName);
+    //  console.log('from update ' + person.firstName);
+    //  pass person as paramater so index.js can access req.body variables
         return $http.put('/view/' + person._id + '/update', person)
     .success(function(data){
-      person.firstName = "Updated!!!";
+    //  person.firstName = "Updated!!!";
+        console.log("Record Updated.");
+    });
+    };
+
+    o.delete = function(person) {
+    //  console.log('from delete ' + person.firstName);
+        return $http.delete('/view/' + person._id + '/delete')
+    .success(function(data){
+        console.log("Record Deleted.");
     });
     };
     
@@ -172,5 +183,19 @@ app.controller('ViewCtrl', ['$scope', 'personnelFactory', 'person', function($sc
     $scope.updatePerson = function(person){ 
       personnelFactory.update(person);        
     };
+      
+    $scope.deletePerson = function(person){ 
+      personnelFactory.delete(person);        
+    
+      $scope.firstName = "";
+      $scope.middleName = "";
+      $scope.lastName = "";
+      $scope.birthdate = "";
+      $scope.gender = "";
+      $scope.maritalStatus = "";
+      $scope.occupation = "";
+      $scope.contactNumber = "";
+    
+    };      
       
 }]);

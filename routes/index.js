@@ -4,6 +4,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Personnel = mongoose.model('Personnel');
 
+/*
 var bodyParser = require('body-parser'); //parses information from POST
 var methodOverride = require('method-override'); //used to manipulate POST
 
@@ -16,6 +17,7 @@ router.use(methodOverride(function(req, res){
         return method
       }
 }))
+*/
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -97,6 +99,19 @@ router.put('/view/:pid/update', function(req, res, next) {
   person.contactNumber = req.body.contactNumber;
 
   person.save(function(err) {
+    if (err) {
+      return next(err);
+    } else {
+      res.json(person);
+    }
+  });
+});
+
+
+router.delete('/view/:pid/delete', function(req, res, next) {
+  var person = req.data;
+
+  person.remove(function(err) {
     if (err) {
       return next(err);
     } else {
