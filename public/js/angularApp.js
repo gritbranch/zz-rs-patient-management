@@ -95,12 +95,7 @@ app.factory('personnelFactory', ['$http', function($http){
     });
     };
     
-    /*
-    o.create = function(post) {
-        return $http.post('/add', post).success(function(data){
-            o.posts.push(data);
-        });
-    };
+    /* Test Data
     
     o.personnelFactory = [
         {firstName: "Ryan", 
