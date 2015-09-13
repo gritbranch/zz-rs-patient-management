@@ -102,8 +102,6 @@ app.factory('personnelFactory', ['$http', function($http){
         });
     };
     
-    
-    
     o.personnelFactory = [
         {firstName: "Ryan", 
         middleName: "Palacios", 
