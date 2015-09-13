@@ -123,7 +123,7 @@ app.factory('personnelFactory', ['$http', function($http){
         }
     ]
     */
-    
+
   return o;
 }]);
 
