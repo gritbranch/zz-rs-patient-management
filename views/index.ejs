@@ -185,6 +185,10 @@
         </div>
         <div class="col-md-4">
         <h1>{{pageHeader}}</h1>
+        <div ng-show="addSuccess" class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Add Complete!</strong>
+        </div>
         <form ng-submit="addPatient()">
                 <input type="text" class="form-control" placeholder="First Name" ng-model="firstName">
                 <input type="text" class="form-control" placeholder="Middle Name" ng-model="middleName">
@@ -209,6 +213,14 @@
         </div>
         <div class="col-md-4">
         <h1>{{pageHeader}}</h1>
+        <div ng-show="updateSuccess" class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Patient Information Updated.</strong>
+        </div>
+        <div ng-show="deleteSuccess" class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Patient Information Deleted.</strong>
+        </div>
         <input type="text" class="form-control" placeholder={{person.firstName}} ng-model="person.firstName">
         <input type="text" class="form-control" placeholder={{person.middleName}} ng-model="person.middleName">
         <input type="text" class="form-control" placeholder={{person.lastName}} ng-model="person.lastName">

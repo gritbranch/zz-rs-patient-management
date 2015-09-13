@@ -148,6 +148,7 @@ app.controller('CreateCtrl', ['$scope', 'personnelFactory', function($scope, per
     
     $scope.personnel = personnelFactory.personnelFactory;
     
+    $scope.addSuccess = 0;
     
     $scope.addPatient = function(){
       personnelFactory.create({
@@ -170,6 +171,7 @@ app.controller('CreateCtrl', ['$scope', 'personnelFactory', function($scope, per
       $scope.occupation = "";
       $scope.contactNumber = "";
       
+      $scope.addSuccess = 1;
     };
 }]);
 
@@ -180,22 +182,29 @@ app.controller('ViewCtrl', ['$scope', 'personnelFactory', 'person', function($sc
     
     $scope.person = person;
     
+    $scope.updateSuccess = 0;
+    $scope.deleteSuccess = 0;
+    
     $scope.updatePerson = function(person){ 
       personnelFactory.update(person);        
+
+      $scope.updateSuccess = 1;
     };
       
     $scope.deletePerson = function(person){ 
+      $scope.person.firstName = "";
+      $scope.person.middleName = "";
+      $scope.person.lastName = "";
+      $scope.person.birthdate = "";
+      $scope.person.gender = "";
+      $scope.person.maritalStatus = "";
+      $scope.person.occupation = "";
+      $scope.person.contactNumber = "";
+      
       personnelFactory.delete(person);        
     
-      $scope.firstName = "";
-      $scope.middleName = "";
-      $scope.lastName = "";
-      $scope.birthdate = "";
-      $scope.gender = "";
-      $scope.maritalStatus = "";
-      $scope.occupation = "";
-      $scope.contactNumber = "";
-    
+      $scope.deleteSuccess = 1;
+          
     };      
       
 }]);
