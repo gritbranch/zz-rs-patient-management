@@ -122,7 +122,7 @@ app.factory('personnelFactory', ['$http', function($http){
         contactNumber: "09159479110"
         }
     ]
-    */
+    */ 
 
   return o;
 }]);
