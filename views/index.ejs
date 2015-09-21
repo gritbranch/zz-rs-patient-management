@@ -171,14 +171,14 @@
         </div>  
         <br>           
         <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-2">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-8">
                         <div class="embed-responsive embed-responsive-4by3">
                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Yky4QtRX_DI"></iframe>
                         </div> 
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                 </div>
         </div>
       </script>
@@ -197,10 +197,12 @@
                 <input type="text" class="form-control" placeholder="Middle Name" ng-model="middleName">
                 <input type="text" class="form-control" placeholder="Last Name" ng-model="lastName">
                 <input type="text" class="form-control" placeholder="Birthdate" ng-model="birthdate">
+                <input type="text" class="form-control" placeholder="Address" ng-model="address">
                 <input type="text" class="form-control" placeholder="Gender" ng-model="gender">
                 <input type="text" class="form-control" placeholder="Marital Status" ng-model="maritalStatus">
                 <input type="text" class="form-control" placeholder="Occupation" ng-model="occupation">
                 <input type="text" class="form-control" placeholder="Contact Number" ng-model="contactNumber">
+                <input type="text" class="form-control" placeholder="Referred By" ng-model="referredBy">
                 <br>
                 <a href="#/home" class="btn btn-sm btn-primary" role="button">Cancel</a>
                 <button class="btn btn-sm btn-success" type="submit">Save</button>
@@ -212,10 +214,11 @@
       </script>
       <script type="text/ng-template" id="/view.html">
         <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">        
+                <h1>{{pageHeader}}</h1>
         </div>
-        <div class="col-md-4">
-        <h1>{{pageHeader}}</h1>
+        <div class="row">
+        <div class="col-md-6">
         <div ng-show="updateSuccess" class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Patient Information Updated.</strong>
@@ -227,17 +230,21 @@
         <input type="text" class="form-control" placeholder={{person.firstName}} ng-model="person.firstName">
         <input type="text" class="form-control" placeholder={{person.middleName}} ng-model="person.middleName">
         <input type="text" class="form-control" placeholder={{person.lastName}} ng-model="person.lastName">
+        <input type="text" class="form-control" placeholder={{person.address}} ng-model="person.address">
         <input type="text" class="form-control" placeholder={{person.birthdate}} ng-model="person.birthdate">
         <input type="text" class="form-control" placeholder={{person.gender}} ng-model="person.gender">
         <input type="text" class="form-control" placeholder={{person.maritalStatus}} ng-model="person.maritalStatus">
         <input type="text" class="form-control" placeholder={{person.occupation}} ng-model="person.occupation">
         <input type="text" class="form-control" placeholder={{person.contactNumber}} ng-model="person.contactNumber">
-
+        <input type="text" class="form-control" placeholder={{person.referredBy}} ng-model="person.referredBy">
+        
         <br>
+        <a href="#/view/{{person._id}}/record" class="glyphicon glyphicon-user" aria-hidden="true"><span class="glyphicon-class">View Record Details</span></a>
+    
+        <br><br>
         <a href="#/home" class="btn btn-sm btn-primary" role="button">Return</a>
         <button ng-click="updatePerson(person)" type="button" class="btn btn-sm btn-warning">Update</button>
         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
-
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
@@ -259,9 +266,71 @@
                 </div>
         </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non faucibus enim. Cras at sodales quam. Suspendisse vulputate quis tellus id dignissim. Sed suscipit sed elit ac laoreet. Donec vitae enim ligula. Mauris laoreet ultrices tortor sed tempor. Aliquam mattis ante mauris. Praesent congue, erat ut fringilla placerat, lacus erat consequat nisl, nec pellentesque erat sem quis diam.
+                </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non faucibus enim. Cras at sodales quam. Suspendisse vulputate quis tellus id dignissim. Sed suscipit sed elit ac laoreet. Donec vitae enim ligula. Mauris laoreet ultrices tortor sed tempor. Aliquam mattis ante mauris. Praesent congue, erat ut fringilla placerat, lacus erat consequat nisl, nec pellentesque erat sem quis diam.
+                </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non faucibus enim. Cras at sodales quam. Suspendisse vulputate quis tellus id dignissim. Sed suscipit sed elit ac laoreet. Donec vitae enim ligula. Mauris laoreet ultrices tortor sed tempor. Aliquam mattis ante mauris. Praesent congue, erat ut fringilla placerat, lacus erat consequat nisl, nec pellentesque erat sem quis diam.
+                </p>
         </div>
         </div>
       </script>
+      <script type="text/ng-template" id="/record.html">
+        <div class="row">
+        <div class="col-md-12">        
+                <h1>{{pageHeader}}</h1>
+        </div>
+        <form ng-submit="addRecord()">
+                <div class="col-md-3">
+                        <input type="text" class="form-control" placeholder="Date" ng-model="date">
+                        <input type="text" class="form-control" placeholder="Name Of Lab" ng-model="nameOfLab">
+                        <input type="text" class="form-control" placeholder="Weight" ng-model="weight">
+                        <input type="text" class="form-control" placeholder="BP" ng-model="bp">
+                        <input type="text" class="form-control" placeholder="HR" ng-model="hr">
+                        <input type="text" class="form-control" placeholder="Hemoglobin" ng-model="hemoglobin">
+                        <input type="text" class="form-control" placeholder="Hematocrift" ng-model="hematocrift">
+                        <input type="text" class="form-control" placeholder="RBC" ng-model="rbc">
+                        <input type="text" class="form-control" placeholder="WBC" ng-model="wbc">
+                        <input type="text" class="form-control" placeholder="Neutrophils" ng-model="neutrophils">
+                 </div>
+                 <div class="col-md-3">
+                        <input type="text" class="form-control" placeholder="Lymphocytes Monocytes" ng-model="lymphocytesMonocytes">
+                        <input type="text" class="form-control" placeholder="Basophils" ng-model="basophils">
+                        <input type="text" class="form-control" placeholder="Eosinophils" ng-model="eosinophils">
+                        <input type="text" class="form-control" placeholder="FBS" ng-model="fbs">
+                        <input type="text" class="form-control" placeholder="RBS" ng-model="rbs">
+                        <input type="text" class="form-control" placeholder="HBA1C" ng-model="hba1c">
+                        <input type="text" class="form-control" placeholder="Bun" ng-model="bun">
+                        <input type="text" class="form-control" placeholder="Creatinine" ng-model="creatinine">
+                        <input type="text" class="form-control" placeholder="1/Scr" ng-model="oneScr">
+                        <input type="text" class="form-control" placeholder="eGFR" ng-model="egfr">
+                 </div>
+                 <div class="col-md-3">                        
+                        <input type="text" class="form-control" placeholder="Na" ng-model="na">
+                        <input type="text" class="form-control" placeholder="K" ng-model="k">
+                        <input type="text" class="form-control" placeholder="Cl" ng-model="cl">
+                        <input type="text" class="form-control" placeholder="Albumin" ng-model="albumin">
+                        <input type="text" class="form-control" placeholder="Globulin" ng-model="globulin">
+                        <input type="text" class="form-control" placeholder="Uric Acid" ng-model="uricAcid">
+                        <input type="text" class="form-control" placeholder="Total Cholesterol Triglyceride" ng-model="totalCholesterolTriglyceride">
+                        <input type="text" class="form-control" placeholder="HDL" ng-model="hdl">
+                        <input type="text" class="form-control" placeholder="LDL" ng-model="ldl">
+                        <input type="text" class="form-control" placeholder="PSA" ng-model="psa">                
+                 </div>
+                 <div class="col-md-3">                        
+                        <input type="text" class="form-control" placeholder="SGOT" ng-model="sgot">              
+                 </div>      
+                 <div class="col-md-12">                        
+                 <br>
+                 <button class="btn btn-sm btn-success" type="submit">Add</button>
+                 </div>
+
+        </form>
+        <div class="col-md-12">        
+        <div ng-repeat="record in person.records">{{record}}<button ng-click="deleteRecord(record)" type="button" class="btn btn-sm btn-danger">Delete the record</button> </div>
+        </div>
+        </div>
+      </script>      
    </body>
 </html>

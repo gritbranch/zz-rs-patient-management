@@ -4,16 +4,14 @@ var PersonnelSchema = new mongoose.Schema({
         firstName: String, 
         middleName: String, 
         lastName: String, 
+        address: String,
         birthdate: String, 
         gender: String, 
         maritalStatus: String, 
         occupation: String, 
-        contactNumber: String
+        contactNumber: String,
+        referredBy: String,
+        records: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Record' }]
         });
-
-PersonnelSchema.methods.update = function (cb) {
-        this.firstName = 'Ryan';
-        this.save(cb);
-}
 
 mongoose.model('Personnel', PersonnelSchema);

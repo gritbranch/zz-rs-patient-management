@@ -29,7 +29,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       templateUrl: '/list.html',
       controller: 'ListCtrl',
       resolve: {
-        postPromise: ['$stateParams', 'personnelFactory', function($stateParams, personnelFactory){
+        promiseObj: ['$stateParams', 'personnelFactory', function($stateParams, personnelFactory){
             return personnelFactory.getFilter($stateParams.filter);
         }]
         }
@@ -55,11 +55,23 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       templateUrl: '/view.html',
       controller: 'ViewCtrl',
       resolve: {
-            person: ['$stateParams', 'personnelFactory', function($stateParams, personnelFactory) {
+            promiseObj: ['$stateParams', 'personnelFactory', function($stateParams, personnelFactory) {
                 return personnelFactory.get($stateParams.id);
             }]
       }
     });
+    
+  $stateProvider
+    .state('record', {
+      url: '/view/{id}/record',
+      templateUrl: '/record.html',
+      controller: 'RecordCtrl',
+      resolve: {
+            promiseObj: ['$stateParams', 'personnelFactory', function($stateParams, personnelFactory) {
+                return personnelFactory.getRecord($stateParams.id);
+            }]
+      }      
+    });    
     
   $urlRouterProvider.otherwise('home');
 }]);
@@ -139,6 +151,24 @@ app.factory('personnelFactory', ['$http', function($http){
     ]
     */
 
+    o.getRecord = function(id) {
+      return $http.get('/view/' + id +'/record').then(function(res){
+        return res.data;
+      });
+    };
+
+    o.addRecord = function(id, record) {
+      return $http.post('/view/' + id + '/record/add', record);
+    };
+
+    o.deleteRecord = function(record) {
+      return $http.delete('/view/' + record._id + '/record/delete')    
+     .success(function(data){
+        console.log("Record Log Deleted.");
+    });
+    
+    };
+
   return o;
 }]);
 
@@ -172,26 +202,33 @@ app.controller('CreateCtrl', ['$scope', 'personnelFactory', function($scope, per
           middleName: $scope.middleName, 
           lastName: $scope.lastName, 
           birthdate: $scope.birthdate, 
+          address: $scope.address,
           gender: $scope.gender, 
           maritalStatus: $scope.maritalStatus, 
           occupation: $scope.occupation, 
-          contactNumber: $scope.contactNumber
+          contactNumber: $scope.contactNumber,           
+          referredBy: $scope.referredBy
       });        
         
       $scope.firstName = "";
       $scope.middleName = "";
       $scope.lastName = "";
       $scope.birthdate = "";
+      $scope.address = "";      
       $scope.gender = "";
       $scope.maritalStatus = "";
       $scope.occupation = "";
       $scope.contactNumber = "";
+      $scope.referredBy = "";
       
       $scope.addSuccess = 1;
     };
 }]);
 
-app.controller('ViewCtrl', ['$scope', 'personnelFactory', 'person', function($scope, personnelFactory, person) {
+app.controller('ViewCtrl', ['$scope', 'personnelFactory', 'promiseObj', function($scope, personnelFactory, promiseObj) {
+    
+    var person = promiseObj;
+    
     $scope.pageHeader = 'View Patient Details';
     
     $scope.personnelFactory = personnelFactory;
@@ -211,11 +248,13 @@ app.controller('ViewCtrl', ['$scope', 'personnelFactory', 'person', function($sc
       $scope.person.firstName = "";
       $scope.person.middleName = "";
       $scope.person.lastName = "";
+      $scope.person.address = "";
       $scope.person.birthdate = "";
       $scope.person.gender = "";
       $scope.person.maritalStatus = "";
       $scope.person.occupation = "";
       $scope.person.contactNumber = "";
+      $scope.person.referredBy = "";
       
       personnelFactory.delete(person);        
     
@@ -223,4 +262,56 @@ app.controller('ViewCtrl', ['$scope', 'personnelFactory', 'person', function($sc
           
     };      
       
+}]);
+
+app.controller('RecordCtrl', ['$scope', 'personnelFactory', 'promiseObj', function($scope, personnelFactory, promiseObj){
+  $scope.pageHeader = 'Record Details';
+  
+  $scope.person = promiseObj;
+  
+  $scope.addRecord = function () {
+    personnelFactory.addRecord($scope.person._id, {
+        date: $scope.date,
+        nameOfLab: $scope.nameOfLab,
+        weight: $scope.weight,
+        bp: $scope.bp,
+        hr: $scope.hr,
+        hemoglobin: $scope.hemoglobin,
+        hematocrift: $scope.hematocrift,
+        rbc: $scope.rbc,
+        wbc: $scope.wbc,
+        neutrophils: $scope.neutrophils,
+        lymphocytesMonocytes: $scope.lymphocytesMonocytes,
+        basophils: $scope.basophils,
+        eosinophils: $scope.eosinophils,
+        fbs: $scope.fbs,
+        rbs: $scope.rbs,
+        hba1c: $scope.hba1c,
+        bun: $scope.bun,
+        creatinine: $scope.creatinine,
+        oneScr: $scope.oneScr,
+        egfr: $scope.egfr,
+        na: $scope.na,
+        k: $scope.k,
+        cl: $scope.cl,
+        albumin: $scope.albumin,
+        globulin: $scope.globulin,
+        uricAcid: $scope.uricAcid,
+        totalCholesterolTriglyceride: $scope.totalCholesterolTriglyceride,
+        hdl: $scope.hdl,
+        ldl: $scope.ldl,
+        psa: $scope.psa,
+        sgot: $scope.sgot
+    }).success(function(record) {
+        $scope.person.records.push(record);
+    });
+  };
+  
+  $scope.deleteRecord = function(record){ 
+      
+      personnelFactory.deleteRecord(record).success(function(data){
+            $scope.person.records.splice(record._id, 1);        
+    });    
+    };      
+ 
 }]);
