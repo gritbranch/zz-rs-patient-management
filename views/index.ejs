@@ -56,9 +56,9 @@
         <div class="row">
         <div class="col-md-6">
         <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter Patient's Last Name Here...">
+                <input type="text" class="form-control" placeholder="Enter Patient's Last Name Here..." ng-model="filter">
                 <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Search</button>
+                <a href="#/list/{{filter}}" class="btn btn-default" role="button">Search</a>
                 </span>
         </div>
         </div>
@@ -71,33 +71,33 @@
         <div class="col-md-12">
         <div class="btn-toolbar">
                 <div class="btn-group btn-group-sm">
-                <a href="#/list/all" class="btn btn-default" role="button">All</a>
-                <a href="#/list/a" class="btn btn-default" role="button">A</a>
-                <a href="#/list/b" class="btn btn-default" role="button">B</a>
-                <a href="#/list/c" class="btn btn-default" role="button">C</a>
-                <a href="#/list/d" class="btn btn-default" role="button">D</a>
-                <a href="#/list/e" class="btn btn-default" role="button">E</a>
-                <a href="#/list/f" class="btn btn-default" role="button">F</a>
-                <a href="#/list/g" class="btn btn-default" role="button">G</a>
-                <a href="#/list/h" class="btn btn-default" role="button">H</a>
-                <a href="#/list/i" class="btn btn-default" role="button">I</a>
-                <a href="#/list/j" class="btn btn-default" role="button">J</a>
-                <a href="#/list/k" class="btn btn-default" role="button">K</a>
-                <a href="#/list/l" class="btn btn-default" role="button">L</a>
-                <a href="#/list/m" class="btn btn-default" role="button">M</a>
-                <a href="#/list/n" class="btn btn-default" role="button">N</a>
-                <a href="#/list/o" class="btn btn-default" role="button">O</a>
-                <a href="#/list/p" class="btn btn-default" role="button">P</a>
-                <a href="#/list/q" class="btn btn-default" role="button">Q</a>
-                <a href="#/list/r" class="btn btn-default" role="button">R</a>
-                <a href="#/list/s" class="btn btn-default" role="button">S</a>
-                <a href="#/list/t" class="btn btn-default" role="button">T</a>
-                <a href="#/list/u" class="btn btn-default" role="button">U</a>
-                <a href="#/list/v" class="btn btn-default" role="button">V</a>
-                <a href="#/list/w" class="btn btn-default" role="button">W</a>
-                <a href="#/list/x" class="btn btn-default" role="button">X</a>
-                <a href="#/list/y" class="btn btn-default" role="button">Y</a>
-                <a href="#/list/z" class="btn btn-default" role="button">Z</a>
+                <a href="#/list/ALL" class="btn btn-default" role="button">All</a>
+                <a href="#/list/A" class="btn btn-default" role="button">A</a>
+                <a href="#/list/B" class="btn btn-default" role="button">B</a>
+                <a href="#/list/C" class="btn btn-default" role="button">C</a>
+                <a href="#/list/D" class="btn btn-default" role="button">D</a>
+                <a href="#/list/E" class="btn btn-default" role="button">E</a>
+                <a href="#/list/F" class="btn btn-default" role="button">F</a>
+                <a href="#/list/G" class="btn btn-default" role="button">G</a>
+                <a href="#/list/H" class="btn btn-default" role="button">H</a>
+                <a href="#/list/I" class="btn btn-default" role="button">I</a>
+                <a href="#/list/J" class="btn btn-default" role="button">J</a>
+                <a href="#/list/K" class="btn btn-default" role="button">K</a>
+                <a href="#/list/L" class="btn btn-default" role="button">L</a>
+                <a href="#/list/M" class="btn btn-default" role="button">M</a>
+                <a href="#/list/N" class="btn btn-default" role="button">N</a>
+                <a href="#/list/O" class="btn btn-default" role="button">O</a>
+                <a href="#/list/P" class="btn btn-default" role="button">P</a>
+                <a href="#/list/Q" class="btn btn-default" role="button">Q</a>
+                <a href="#/list/R" class="btn btn-default" role="button">R</a>
+                <a href="#/list/S" class="btn btn-default" role="button">S</a>
+                <a href="#/list/T" class="btn btn-default" role="button">T</a>
+                <a href="#/list/U" class="btn btn-default" role="button">U</a>
+                <a href="#/list/V" class="btn btn-default" role="button">V</a>
+                <a href="#/list/W" class="btn btn-default" role="button">W</a>
+                <a href="#/list/X" class="btn btn-default" role="button">X</a>
+                <a href="#/list/Y" class="btn btn-default" role="button">Y</a>
+                <a href="#/list/Z" class="btn btn-default" role="button">Z</a>
                 </div>
         </div>
         </div>
@@ -107,9 +107,9 @@
         <div class="row">
         <div class="col-md-6">
         <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter Patient's Last Name Here...">
+                <input type="text" class="form-control" placeholder="Enter Patient's Last Name Here..." ng-model="filter">
                 <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Search</button>
+                <a href="#/list/{{filter}}" class="btn btn-default" role="button">Search</a>
                 </span>
         </div>
         </div>
@@ -122,35 +122,34 @@
         <div class="col-md-12">
         <div class="btn-toolbar">
                 <div class="btn-group btn-group-sm">
-                <!-- TO DO: #/list/filter=all; and access as req.param in node -->
                 <!-- https://scotch.io/tutorials/use-expressjs-to-get-url-and-post-parameters -->
-                <a href="#/list/all" class="btn btn-default" role="button">All</a>
-                <a href="#/list/a" class="btn btn-default" role="button">A</a>
-                <a href="#/list/b" class="btn btn-default" role="button">B</a>
-                <a href="#/list/c" class="btn btn-default" role="button">C</a>
-                <a href="#/list/d" class="btn btn-default" role="button">D</a>
-                <a href="#/list/e" class="btn btn-default" role="button">E</a>
-                <a href="#/list/f" class="btn btn-default" role="button">F</a>
-                <a href="#/list/g" class="btn btn-default" role="button">G</a>
-                <a href="#/list/h" class="btn btn-default" role="button">H</a>
-                <a href="#/list/i" class="btn btn-default" role="button">I</a>
-                <a href="#/list/j" class="btn btn-default" role="button">J</a>
-                <a href="#/list/k" class="btn btn-default" role="button">K</a>
-                <a href="#/list/l" class="btn btn-default" role="button">L</a>
-                <a href="#/list/m" class="btn btn-default" role="button">M</a>
-                <a href="#/list/n" class="btn btn-default" role="button">N</a>
-                <a href="#/list/o" class="btn btn-default" role="button">O</a>
-                <a href="#/list/p" class="btn btn-default" role="button">P</a>
-                <a href="#/list/q" class="btn btn-default" role="button">Q</a>
-                <a href="#/list/r" class="btn btn-default" role="button">R</a>
-                <a href="#/list/s" class="btn btn-default" role="button">S</a>
-                <a href="#/list/t" class="btn btn-default" role="button">T</a>
-                <a href="#/list/u" class="btn btn-default" role="button">U</a>
-                <a href="#/list/v" class="btn btn-default" role="button">V</a>
-                <a href="#/list/w" class="btn btn-default" role="button">W</a>
-                <a href="#/list/x" class="btn btn-default" role="button">X</a>
-                <a href="#/list/y" class="btn btn-default" role="button">Y</a>
-                <a href="#/list/z" class="btn btn-default" role="button">Z</a>
+                <a href="#/list/ALL" class="btn btn-default" role="button">All</a>
+                <a href="#/list/A" class="btn btn-default" role="button">A</a>
+                <a href="#/list/B" class="btn btn-default" role="button">B</a>
+                <a href="#/list/C" class="btn btn-default" role="button">C</a>
+                <a href="#/list/D" class="btn btn-default" role="button">D</a>
+                <a href="#/list/E" class="btn btn-default" role="button">E</a>
+                <a href="#/list/F" class="btn btn-default" role="button">F</a>
+                <a href="#/list/G" class="btn btn-default" role="button">G</a>
+                <a href="#/list/H" class="btn btn-default" role="button">H</a>
+                <a href="#/list/I" class="btn btn-default" role="button">I</a>
+                <a href="#/list/J" class="btn btn-default" role="button">J</a>
+                <a href="#/list/K" class="btn btn-default" role="button">K</a>
+                <a href="#/list/L" class="btn btn-default" role="button">L</a>
+                <a href="#/list/M" class="btn btn-default" role="button">M</a>
+                <a href="#/list/N" class="btn btn-default" role="button">N</a>
+                <a href="#/list/O" class="btn btn-default" role="button">O</a>
+                <a href="#/list/P" class="btn btn-default" role="button">P</a>
+                <a href="#/list/Q" class="btn btn-default" role="button">Q</a>
+                <a href="#/list/R" class="btn btn-default" role="button">R</a>
+                <a href="#/list/S" class="btn btn-default" role="button">S</a>
+                <a href="#/list/T" class="btn btn-default" role="button">T</a>
+                <a href="#/list/U" class="btn btn-default" role="button">U</a>
+                <a href="#/list/V" class="btn btn-default" role="button">V</a>
+                <a href="#/list/W" class="btn btn-default" role="button">W</a>
+                <a href="#/list/X" class="btn btn-default" role="button">X</a>
+                <a href="#/list/Y" class="btn btn-default" role="button">Y</a>
+                <a href="#/list/Z" class="btn btn-default" role="button">Z</a>
                 </div>
         </div>
         </div>
@@ -166,17 +165,21 @@
       </script>        
       <script type="text/ng-template" id="/about.html">
         <div class="row">
-        <div class="col-md-12">
-        <h1>{{pageHeader}}</h1>
-        </div>
-        </div>
+                <div class="col-md-12">
+                        <h4>{{pageHeader}}</h4>
+                </div>
+        </div>  
+        <br>           
         <div class="row">
-        <div class="col-md-6">
-        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-        </div>
-        <div class="col-md-6">
-        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-        </div>
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                        <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Yky4QtRX_DI"></iframe>
+                        </div> 
+                </div>
+                <div class="col-md-4">
+                </div>
         </div>
       </script>
       <script type="text/ng-template" id="/create.html">

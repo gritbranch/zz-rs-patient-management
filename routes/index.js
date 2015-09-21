@@ -38,7 +38,28 @@ router.get('/list', function(req, res, next) {
 });
 
 //lists person by filter
-//TO DO
+router.get('/list/:filter', function(req, res, next) {
+    var filter = req.params.filter;
+    
+    if (filter === 'ALL') {
+      Personnel.find(function(err, data) {
+          if (err) {
+              return next(err);
+          }
+  
+          res.json(data);
+      });  
+    } else {
+      Personnel.find({lastName: {$regex : "^" + req.params.filter}}, function(err, data) {
+          if (err) {
+              return next(err);
+          }
+  
+          res.json(data);
+      });       
+    }
+    
+});
 
 //adds person to DB
 router.post('/add', function(req, res, next) {

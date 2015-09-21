@@ -8,15 +8,29 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       templateUrl: '/home.html',
       controller: 'MainCtrl'
     });
-    
+
+/*    
+  $stateProvider
+    .state('list', {
+      url: '/list/all',
+      templateUrl: '/list.html',
+      controller: 'ListCtrl',
+      resolve: {
+        postPromise: ['personnelFactory', function(personnelFactory){
+            return personnelFactory.getAll();
+        }]
+        }
+    });    
+*/
+
   $stateProvider
     .state('list', {
       url: '/list/{filter}',
       templateUrl: '/list.html',
       controller: 'ListCtrl',
       resolve: {
-        postPromise: ['personnelFactory', function(personnelFactory){
-            return personnelFactory.getAll();
+        postPromise: ['$stateParams', 'personnelFactory', function($stateParams, personnelFactory){
+            return personnelFactory.getFilter($stateParams.filter);
         }]
         }
     });    
@@ -59,6 +73,12 @@ app.factory('personnelFactory', ['$http', function($http){
     
     o.getAll = function() {
         return $http.get('/list').success(function(data){
+          angular.copy(data, o.personnelFactory);
+        });
+    };
+    
+    o.getFilter = function(filter) {
+        return $http.get('/list/' + filter).success(function(data){
           angular.copy(data, o.personnelFactory);
         });
     };
@@ -136,7 +156,7 @@ app.controller('ListCtrl', ['$scope', 'personnelFactory', function($scope, perso
 }]);
 
 app.controller('AboutCtrl', ['$scope', function($scope){
-  $scope.pageHeader = 'Project Small Potato About Page';
+  $scope.pageHeader = 'So Say Good Night To The Bad Guy!';
 }]);
 
 app.controller('CreateCtrl', ['$scope', 'personnelFactory', function($scope, personnelFactory) {
