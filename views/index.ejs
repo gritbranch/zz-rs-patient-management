@@ -158,7 +158,7 @@
         <div class="row">
         <div class="col-md-6">
         <div class="list-group">
-                <a href="#/view/{{person._id}}" class="list-group-item" ng-repeat="person in personnel | orderBy: 'lastName'">{{person._id}}: {{person.lastName}}, {{person.firstName}} {{person.middleName}}</a>
+                <a href="#/view/{{person._id}}" class="list-group-item" ng-repeat="person in personnel | orderBy: 'lastName'">{{person.lastName}}, {{person.firstName}} {{person.middleName}}</a>
         </div>
         </div>
         </div>
@@ -327,8 +327,41 @@
                  </div>
 
         </form>
-        <div class="col-md-12">        
-        <div ng-repeat="record in person.records">{{record}}<button ng-click="deleteRecord(record)" type="button" class="btn btn-sm btn-danger">Delete the record</button> </div>
+        <br>
+        <div class="row marketing">
+        <div class="col-md-4" ng-repeat="record in person.records">
+                <h4>Date: <span style="font-style: italic;">{{record.date}}</span></h4>
+                <h4>Name Of Lab: <span style="font-style: italic;">{{record.nameOfLab}}</span></h4>
+                <h4>Weight: <span style="font-style: italic;">{{record.weight}}</span></h4>
+                <h4>BP: <span style="font-style: italic;">{{record.bp}}</span></h4>
+                <h4>HR: <span style="font-style: italic;">{{record.hr}}</span></h4>
+                <h4>Hemoglobin: <span style="font-style: italic;">{{record.hemoglobin}}</span></h4>
+                <h4>Hematocrift: <span style="font-style: italic;">{{record.hematocrift}}</span></h4>
+                <h4>RBC: <span style="font-style: italic;">{{record.rbc}}</span></h4>
+                <h4>WBC: <span style="font-style: italic;">{{record.wbc}}</span></h4>
+                <h4>Neutrophils: <span style="font-style: italic;">{{record.neutrophils}}</span></h4>
+                <h4>Lymphocytes Monocytes: <span style="font-style: italic;">{{record.lymphocytesMonocytes}}</span></h4>
+                <h4>Basophils: <span style="font-style: italic;">{{record.basophils}}</span></h4>
+                <h4>Eosinophils: <span style="font-style: italic;">{{record.eosinophils}}</span></h4>
+                <h4>FBS: <span style="font-style: italic;">{{record.fbs}}</span></h4>
+                <h4>RBS: <span style="font-style: italic;">{{record.rbs}}</span></h4>
+                <h4>HBA1C: <span style="font-style: italic;">{{record.hba1c}}</span></h4>
+                <h4>Bun: <span style="font-style: italic;">{{record.bun}}</span></h4>
+                <h4>Creatinine: <span style="font-style: italic;">{{record.creatinine}}</span></h4>
+                <h4>1/Scr: <span style="font-style: italic;">{{record.oneScr}}</span></h4>
+                <h4>eGFR: <span style="font-style: italic;">{{record.egfr}}</span></h4>
+                <h4>Na: <span style="font-style: italic;">{{record.na}}</span></h4>
+                <h4>K: <span style="font-style: italic;">{{record.k}}</span></h4>
+                <h4>Cl: <span style="font-style: italic;">{{record.cl}}</span></h4>
+                <h4>Albumin: <span style="font-style: italic;">{{record.albumin}}</span></h4>
+                <h4>Globulin: <span style="font-style: italic;">{{record.globulin}}</span></h4>
+                <h4>Uric Acid: <span style="font-style: italic;">{{record.uricAcid}}</span></h4>
+                <h4>Total Cholesterol Triglyceride: <span style="font-style: italic;">{{record.totalCholesterolTriglyceride}}</span></h4>
+                <h4>HDL: <span style="font-style: italic;">{{record.hdl}}</span></h4>
+                <h4>LDL: <span style="font-style: italic;">{{record.ldl}}</span></h4>
+                <h4>PSA: <span style="font-style: italic;">{{record.psa}}</span></h4>     
+                <h4>SGOT: <span style="font-style: italic;">{{record.sgot}}</span></h4> 
+                <button ng-click="deleteRecord(record)" type="button" class="btn btn-sm btn-danger">Delete the record</button> 
         </div>
         </div>
       </script>      

@@ -30,7 +30,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'ListCtrl',
       resolve: {
         promiseObj: ['$stateParams', 'personnelFactory', function($stateParams, personnelFactory){
-            return personnelFactory.getFilter($stateParams.filter);
+            return personnelFactory.getFilter($stateParams.filter.toUpperCase());
         }]
         }
     });    
@@ -189,7 +189,7 @@ app.controller('AboutCtrl', ['$scope', function($scope){
   $scope.pageHeader = 'So Say Good Night To The Bad Guy!';
 }]);
 
-app.controller('CreateCtrl', ['$scope', 'personnelFactory', function($scope, personnelFactory) {
+app.controller('CreateCtrl', ['$scope', '$location', 'personnelFactory', function($scope, $location, personnelFactory) {
   $scope.pageHeader = 'Add Patient';
     
     $scope.personnel = personnelFactory.personnelFactory;
@@ -200,7 +200,8 @@ app.controller('CreateCtrl', ['$scope', 'personnelFactory', function($scope, per
       personnelFactory.create({
           firstName: $scope.firstName, 
           middleName: $scope.middleName, 
-          lastName: $scope.lastName, 
+          //Convert Last Name to Uppercase
+          lastName: $scope.lastName.toUpperCase(), 
           birthdate: $scope.birthdate, 
           address: $scope.address,
           gender: $scope.gender, 
@@ -221,6 +222,8 @@ app.controller('CreateCtrl', ['$scope', 'personnelFactory', function($scope, per
       $scope.contactNumber = "";
       $scope.referredBy = "";
       
+      $location.path('/home');
+      
       $scope.addSuccess = 1;
     };
 }]);
@@ -239,6 +242,7 @@ app.controller('ViewCtrl', ['$scope', 'personnelFactory', 'promiseObj', function
     $scope.deleteSuccess = 0;
     
     $scope.updatePerson = function(person){ 
+      
       personnelFactory.update(person);        
 
       $scope.updateSuccess = 1;
